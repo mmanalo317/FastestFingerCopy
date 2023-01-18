@@ -1,0 +1,207 @@
+﻿@model IEnumerable<FFFWebApplication.Question>
+
+@{
+    ViewBag.Title = "Index";
+    var tbl1Counter = 0;
+    var tbl2Counter = 0;
+    var tbl3Counter = 0;
+}
+<div class="table__page" id="table__page">
+    <div class="btn-back">
+        <a href="/Home/AdminDB" class="btn-back">< Back to Dashboard</a>
+    </div>
+    <div class="table__page--title">
+        <h1>Questions List</h1>
+        <a href="@Url.Action("Create", "Question")" class="btn btn-success">
+            <i class="fa-solid fa-plus"></i>
+            <span>
+                <strong>Add a Question</strong>
+            </span>
+        </a>
+    </div>
+    <div style="max-height: 80%; overflow-y: scroll;" class="sets-container">
+        <table class="table-question-set">
+            <p class="btn-table">Set Number #1</p>
+            <tr class="heading-of-table">
+                <th class="question-field">
+                    Question
+                </th>
+                <th>
+                    A
+                </th>
+                <th>
+                    B
+                </th>
+                <th>
+                    C
+                </th>
+                <th>
+                    D
+                </th>
+            </tr>
+            @foreach (var item1 in Model.Where(x => x.QuestionSet == 1))
+            {
+                tbl1Counter++;
+                <tr class="table-row">
+                    <td>
+                        @Html.DisplayFor(modelItem => item1.QuestionDesc)
+                    </td>
+                    <td class="table-cell">
+                        @Html.DisplayFor(modelItem => item1.QuestionOptionA)
+                    </td>
+                    <td class="table-cell">
+                        @Html.DisplayFor(modelItem => item1.QuestionOptionB)
+                    </td>
+                    <td class="table-cell">
+                        @Html.DisplayFor(modelItem => item1.QuestionOptionC)
+                    </td>
+                    <td class="table-cell">
+                        @Html.DisplayFor(modelItem => item1.QuestionOptionD)
+                    </td>
+                    <td class="table-actions">
+                        <a href="@Url.Action("Edit", "Question", new { id = item1.QuestionId })" class="btn btn-warning">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                        <a href="@Url.Action("Details", "Question", new { id = item1.QuestionId })" class="btn btn-primary">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Question", new { id = item1.QuestionId })" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            @if (tbl1Counter > 10)
+            {
+                <p>Number of questions: <span style="color:red">@tbl1Counter</span></p>
+            }
+            else
+            {
+                <p>Number of questions: @tbl1Counter</p>
+            }
+
+        </table>
+
+        <table class="table-question-set">
+            <p class="btn-table">Set Number #2</p>
+            <tr class="heading-of-table">
+                <th class="question-field">
+                    Question
+                </th>
+                <th>
+                    A
+                </th>
+                <th>
+                    B
+                </th>
+                <th>
+                    C
+                </th>
+                <th>
+                    D
+                </th>
+            </tr>
+            @foreach (var item2 in Model.Where(x => x.QuestionSet == 2))
+            {
+                tbl2Counter++;
+                <tr class="table-row">
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.QuestionDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.QuestionOptionA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.QuestionOptionB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.QuestionOptionC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.QuestionOptionD)
+                    </td>
+                    <td class="table-actions">
+                        <a href="@Url.Action("Edit", "Question", new { id = item2.QuestionId })" class="btn btn-warning">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                        <a href="@Url.Action("Details", "Question", new { id = item2.QuestionId })" class="btn btn-primary">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Question", new { id = item2.QuestionId })" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            @if (tbl2Counter > 10)
+            {
+                <p>Number of questions: <span style="color:red">@tbl2Counter</span></p>
+            }
+            else
+            {
+                <p>Number of questions: @tbl2Counter</p>
+            }
+        </table>
+
+        <table class="table-question-set">
+            <p class="btn-table">Set Number #3</p>
+            <tr class="heading-of-table">
+                <th class="question-field">
+                    Question
+                </th>
+                <th>
+                    A
+                </th>
+                <th>
+                    B
+                </th>
+                <th>
+                    C
+                </th>
+                <th>
+                    D
+                </th>
+            </tr>
+            @foreach (var item3 in Model.Where(x => x.QuestionSet == 3))
+            {
+                tbl3Counter++;
+                <tr class="table-row">
+                    <td>
+                        @Html.DisplayFor(modelItem => item3.QuestionDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item3.QuestionOptionA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item3.QuestionOptionB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item3.QuestionOptionC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item3.QuestionOptionD)
+                    </td>
+                    <td class="table-actions">
+                        <a href="@Url.Action("Edit", "Question", new { id = item3.QuestionId })" class="btn btn-warning">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                        <a href="@Url.Action("Details", "Question", new { id = item3.QuestionId })" class="btn btn-primary">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Question", new { id = item3.QuestionId })" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            @if (tbl3Counter > 10)
+            {
+                <p>Number of questions: <span style="color:red">@tbl3Counter</span></p>
+            }
+            else
+            {
+                <p>Number of questions: @tbl3Counter</p>
+            }
+        </table>
+    </div>
+</div>

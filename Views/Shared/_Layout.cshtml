@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Fastest Finger First</title>
+    <link rel="icon" href="~/Content/Images/mill_logo.png">
+    <!--<link href="//db.onlinewebfonts.com/c/87d2f850d068b35af158e6a1bf5f653f?family=Copperplate+Gothic" rel="stylesheet" type="text/css" />-->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/countdownTimer.js")
+    @Scripts.Render("~/Scripts/optionSelect.js")
+    <script src="https://kit.fontawesome.com/b95df24a48.js" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <!--
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Fastest Finger First", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("User", "Index", "User")</li>
+                    <li>@Html.ActionLink("Question", "Index", "Question")</li>
+                    <li>@Html.ActionLink("Result", "Index", "Result")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    -->
+    <div class="container body-content">
+        <!--<img src="~/Content/Images/abstract-luxury-soft-red-background-christmas-valentines-layout-design-studio-room-web-template-business-report-with-smooth-circle-gradient-color.jpg"
+        class="bg" />-->
+        @RenderBody()
+        <!--<hr />-->
+        <footer>
+            <!--<p>&copy; @DateTime.Now.Year - S</p>-->
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        const tableContainer = document.querySelector('#table__page');
+
+        if (tableContainer != null) {
+            const parent = tableContainer.parentNode;
+
+            const grandparent = parent.parentNode;
+
+            const list = grandparent.classList;
+
+            list.add("lightbg");
+        }
+
+        const editContainer = document.querySelector('#edit-pages');
+
+        if (editContainer != null) {
+            const parentE = editContainer.parentNode;
+
+            const grandparentE = parentE.parentNode;
+
+            const listE = grandparentE.classList;
+
+            listE.add("lightbg");
+        }
+
+    </script>
+</body>
+</html>

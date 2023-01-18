@@ -1,0 +1,361 @@
+@model FFFWebApplication.Result
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="edit-pages" id="edit-pages">
+    <h2>Details</h2>
+    <hr />
+
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.User.FirstName)
+                @Html.DisplayFor(model => model.User.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.User.Email)
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+            <th>Q5</th>
+            <th>Q6</th>
+            <th>Q7</th>
+            <th>Q8</th>
+            <th>Q9</th>
+            <th>Q10</th>
+        </tr>
+        <tr>
+            @{
+                var q1 = Model.Q1Correct;
+                var q2 = Model.Q2Correct;
+                var q3 = Model.Q3Correct;
+                var q4 = Model.Q4Correct;
+                var q5 = Model.Q5Correct;
+                var q6 = Model.Q6Correct;
+                var q7 = Model.Q7Correct;
+                var q8 = Model.Q8Correct;
+                var q9 = Model.Q9Correct;
+                var q10 = Model.Q10Correct;
+
+                if (q1 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q1TimeToAnswer)s
+                    </td>
+                }
+                else if (q1 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q1TimeToAnswer)s
+                    </td>
+                }
+                if (q2 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q2TimeToAnswer)s
+                    </td>
+                }
+                else if (q2 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q2TimeToAnswer)s
+                    </td>
+                }
+                if (q3 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q3TimeToAnswer)s
+                    </td>
+                }
+                else if (q3 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q3TimeToAnswer)s
+                    </td>
+                }
+                if (q4 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q4TimeToAnswer)s
+                    </td>
+                }
+                else if (q4 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q4TimeToAnswer)s
+                    </td>
+                }
+                if (q5 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q5TimeToAnswer)s
+                    </td>
+                }
+                else if (q5 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q5TimeToAnswer)s
+                    </td>
+                }
+                if (q6 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q6TimeToAnswer)s
+                    </td>
+                }
+                else if (q6 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q6TimeToAnswer)s
+                    </td>
+                }
+                if (q7 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q7TimeToAnswer)s
+                    </td>
+                }
+                else if (q7 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q7TimeToAnswer)s
+                    </td>
+                }
+                if (q8 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q8TimeToAnswer)s
+                    </td>
+                }
+                else if (q8 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q8TimeToAnswer)s
+                    </td>
+                }
+                if (q9 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q9TimeToAnswer)s
+                    </td>
+                }
+                else if (q9 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q9TimeToAnswer)s
+                    </td>
+                }
+                if (q10 == "true")
+                {
+                    <td class="table-green">
+                        @Html.DisplayFor(model => model.Q10TimeToAnswer)s
+                    </td>
+                }
+                else if (q10 == "false")
+                {
+                    <td class="table-red">
+                        @Html.DisplayFor(model => model.Q10TimeToAnswer)s
+                    </td>
+                }
+            }
+
+        </tr>
+    </table>
+
+    <dl style="display: none;" class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Q1Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q1Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q1TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q1TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q2Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q2Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q2TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q2TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q3Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q3Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q3TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q3TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q4Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q4Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q4TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q4TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q5Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q5Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q5TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q5TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q6Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q6Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q6TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q6TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q7Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q7Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q7TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q7TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q8Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q8Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q8TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q8TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q9Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q9Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q9TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q9TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q10Correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q10Correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q10TimeToAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q10TimeToAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Back to List", "Index") |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ResultId }, new { @class = "btn btn-danger" })
+    </p>
+</div>

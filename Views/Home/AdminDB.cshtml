@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "AdminDB";
+}
+
+<div class="admin-page">
+    <div class="table__page--title">
+        <div class="admin-first-row">
+            <h1>
+                Welcome.
+            </h1>
+            <a href="/Home/Login" class="btn btn-admin-logout"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
+        </div>
+        <p>
+            Welcome to the Admin Dashboard. Here you can access current Users
+            on the system and add more. Check and add new Questions and review
+            all results from Contestants attempts at the Fastest Finger First
+            Quiz.
+        </p>
+    </div>
+
+    <div class="admin-nav-container">
+        <div class="admin-button-container">
+            <a href="/Result/Index" class="admin-icon">
+                <i class="fa-solid fa-square-poll-horizontal"></i>
+            </a>
+            <p>Results</p>
+        </div>
+        <div class="admin-button-container">
+            <a href="/Question/Index" class="admin-icon">
+                <i class="fa-regular fa-circle-question"></i>
+            </a>
+            <p>Questions</p>
+        </div>
+        <div class="admin-button-container">
+            <a href="/User/Index" class="admin-icon">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <p>Users</p>
+        </div>
+    </div>
+</div>

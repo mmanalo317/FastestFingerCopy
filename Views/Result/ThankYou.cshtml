@@ -1,0 +1,203 @@
+﻿@model FFFWebApplication.Result
+
+@{
+    ViewBag.Title = "ThankYou";
+}
+
+@{
+    <p style="display:none;" id="user-id-label">@Session["UserID"].ToString()</p>
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "resultForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q1Correct, new { htmlAttributes = new { @class = "form-control", @id = "1correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q1TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "1time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q2Correct, new { htmlAttributes = new { @class = "form-control", @id = "2correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q2TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "2time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q3Correct, new { htmlAttributes = new { @class = "form-control", @id = "3correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q3TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "3time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q4Correct, new { htmlAttributes = new { @class = "form-control", @id = "4correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q4TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "4time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q5Correct, new { htmlAttributes = new { @class = "form-control", @id = "5correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q5TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "5time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q6Correct, new { htmlAttributes = new { @class = "form-control", @id = "6correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q6TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "6time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q7Correct, new { htmlAttributes = new { @class = "form-control", @id = "7correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q7TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "7time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q8Correct, new { htmlAttributes = new { @class = "form-control", @id = "8correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q8TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "8time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q9Correct, new { htmlAttributes = new { @class = "form-control", @id = "9correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q9TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "9time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q10Correct, new { htmlAttributes = new { @class = "form-control", @id = "10correct" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Q10TimeToAnswer, new { htmlAttributes = new { @class = "form-control", @id = "10time" } })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @id = "userid" } })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<!-- END -->
+
+<script>
+    //Add some JS to get the details in the SessionStorage from Qs and display
+    window.onload = function () {
+
+        //Question 1
+        var correct1 = sessionStorage.getItem("Q1Correct");
+        var time1 = sessionStorage.getItem("answerTime-1");
+        var elemC1 = document.getElementById("1correct");
+        var elemT1 = document.getElementById("1time");
+        elemC1.value = correct1;
+        elemT1.value = time1;
+
+        //Question 2
+        var correct2 = sessionStorage.getItem("Q2Correct");
+        var time2 = sessionStorage.getItem("answerTime-2");
+        var elemC2 = document.getElementById("2correct");
+        var elemT2 = document.getElementById("2time");
+        elemC2.value = correct2;
+        elemT2.value = time2;
+
+        //Question 3
+        var correct3 = sessionStorage.getItem("Q3Correct");
+        var time3 = sessionStorage.getItem("answerTime-3");
+        var elemC3 = document.getElementById("3correct");
+        var elemT3 = document.getElementById("3time");
+        elemC3.value = correct3;
+        elemT3.value = time3;
+
+        //Question 4
+        var correct4 = sessionStorage.getItem("Q4Correct");
+        var time4 = sessionStorage.getItem("answerTime-4");
+        var elemC4 = document.getElementById("4correct");
+        var elemT4 = document.getElementById("4time");
+        elemC4.value = correct4;
+        elemT4.value = time4;
+
+        //Question 5
+        var correct5 = sessionStorage.getItem("Q5Correct");
+        var time5 = sessionStorage.getItem("answerTime-5");
+        var elemC5 = document.getElementById("5correct");
+        var elemT5 = document.getElementById("5time");
+        elemC5.value = correct5;
+        elemT5.value = time5;
+
+        //Question 6
+        var correct6 = sessionStorage.getItem("Q6Correct");
+        var time6 = sessionStorage.getItem("answerTime-6");
+        var elemC6 = document.getElementById("6correct");
+        var elemT6 = document.getElementById("6time");
+        elemC6.value = correct6;
+        elemT6.value = time6;
+
+        //Question 7
+        var correct7 = sessionStorage.getItem("Q7Correct");
+        var time7 = sessionStorage.getItem("answerTime-7");
+        var elemC7 = document.getElementById("7correct");
+        var elemT7 = document.getElementById("7time");
+        elemC7.value = correct7;
+        elemT7.value = time7;
+
+        //Question 8
+        var correct8 = sessionStorage.getItem("Q8Correct");
+        var time8 = sessionStorage.getItem("answerTime-8");
+        var elemC8 = document.getElementById("8correct");
+        var elemT8 = document.getElementById("8time");
+        elemC8.value = correct8;
+        elemT8.value = time8;
+
+        //Question 9
+        var correct9 = sessionStorage.getItem("Q9Correct");
+        var time9 = sessionStorage.getItem("answerTime-9");
+        var elemC9 = document.getElementById("9correct");
+        var elemT9 = document.getElementById("9time");
+        elemC9.value = correct9;
+        elemT9.value = time9;
+
+        //Question 10
+        var correct10 = sessionStorage.getItem("Q10Correct");
+        var time10 = sessionStorage.getItem("answerTime-10");
+        var elemC10 = document.getElementById("10correct");
+        var elemT10 = document.getElementById("10time");
+        elemC10.value = correct10;
+        elemT10.value = time10;
+
+        //User Id
+        var userElem = document.getElementById("user-id-label").innerText;
+        var userInput = document.getElementById("userid");
+        var userNum = parseInt(userElem);
+        userInput.value = userNum;
+
+        document.getElementById('resultForm').submit();
+
+    };
+</script>

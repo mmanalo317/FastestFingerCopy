@@ -1,0 +1,72 @@
+﻿@model FFFWebApplication.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="edit-pages" id="edit-pages">
+    <h2>Details</h2>
+
+    <div>
+        <h4>User</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                First Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                Surname
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+
+            <dt>
+                Email
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                Password
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                Access Level
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AccessLevel)
+            </dd>
+
+            <dt style="display:none;">
+                Is Active
+            </dt>
+
+            <dd style="display:none;">
+                @Html.DisplayFor(model => model.IsActive)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("< Back to List", "Index") |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }, new { @class = "btn btn-warning" })
+
+
+        <!--If the user has a record in results table, show 'View Results' button-->
+
+    </p>
+</div>

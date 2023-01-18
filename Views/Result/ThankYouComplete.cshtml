@@ -1,0 +1,37 @@
+﻿@model FFFWebApplication.Result
+
+@{
+    ViewBag.Title = "ThankYouComplete";
+}
+
+<!-- Now empty the username and user id from session -->
+@{
+
+    Session["UserName"] = "";
+    Session["UserID"] = "";
+
+}
+
+<div class="page__container start__container">
+    <div class="thank-you-logo">
+        <img src="~/Content/Images/mill_logo.png" />
+    </div>
+    <h1 class="page-title thank-you-title">Thank you</h1>
+    <p class="thank-text">
+        Thank you for completing the Fastest Finger First Quiz.
+        We have logged your results and will be in touch soon.
+    </p>
+
+    <!-- MAKE SURE TO REMOVE USERNAME AND PASSWORD FROM SESSION AFTER SENDING DATA TO RESULTS TABLE-->
+    <!-- ********************-->
+
+    <a href="/Home/Login" class="btn-quiz-logout">LOGOUT</a>
+</div>
+
+<script>
+
+    //window.onbeforeunload = function () { return "Your work will be lost."; };
+    window.onload = function () {
+        sessionStorage.clear();
+    }
+</script>

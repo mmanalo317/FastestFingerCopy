@@ -1,0 +1,212 @@
+@model IEnumerable<FFFWebApplication.Question>
+
+@{
+    ViewBag.Title = "Q1";
+
+}
+<div class="page__container start__container">
+    @{
+        var sessionSetId = Session["SetId"];
+        var setId = Convert.ToInt32(sessionSetId);
+
+        //GET a list of all the question ids in this set
+        List<int> questionsInSet = new List<int> { };
+        foreach (var item in Model.Where(x => x.QuestionSet == setId))
+        {
+            //Getting all of the IDs into a list
+            questionsInSet.Add(item.QuestionId);
+        }
+
+        //GET the current question position
+        var sessionCurrent = Session["QuestionNumber"];
+        var current = Convert.ToInt32(sessionCurrent);
+
+        //If the current is greater than or equal to 10
+        if (current <= 9)
+        {
+            <p id="countdown"></p>
+            //Print the whole question of the current
+            var picked = questionsInSet[current];
+            <div id="questionContainer-@current" class="questionContainer">
+
+                @foreach (var item in Model.Where(x => x.QuestionId == picked))
+                {
+                    <div class="question__container--graphic question">
+                        <h1 class="btn-question">@item.QuestionDesc</h1>
+                    </div>
+
+                    var questionA = item.QuestionOptionA;
+                    var questionB = item.QuestionOptionB;
+                    var questionC = item.QuestionOptionC;
+                    var questionD = item.QuestionOptionD;
+
+                    List<string> correctOrder = new List<string> { questionA, questionB, questionC, questionD };
+                    Random rand = new Random();
+                    var shuffled = correctOrder.OrderBy(_ => rand.Next()).ToList();
+
+                    var optionA = shuffled[0];
+                    var optionB = shuffled[1];
+                    var optionC = shuffled[2];
+                    var optionD = shuffled[3];
+
+                    <div id="button-group" class="button__group">
+                        <div class="question__container--graphic">
+                            <button onclick="addAnswer(this.id)" id="@optionA" value="@shuffled[0]" class="btn-option btn-magic"><span class="btn-letter">A:</span> @shuffled[0]</button>
+                        </div>
+                        <div class="question__container--graphic">
+                            <button onclick="addAnswer(this.id)" id="@optionB" class="btn-option btn-magic"><span class="btn-letter">B:</span> @shuffled[1]</button>
+                        </div>
+                        <div class="question__container--graphic">
+                            <button onclick="addAnswer(this.id)" id="@optionC" class="btn-option btn-magic"><span class="btn-letter">C:</span> @shuffled[2]</button>
+                        </div>
+                        <div class="question__container--graphic">
+                            <button onclick="addAnswer(this.id)" id="@optionD" class="btn-option btn-magic"><span class="btn-letter">D:</span> @shuffled[3]</button>
+                        </div>
+
+                    </div>
+
+                    <div id="click-group" class="buttons-container">
+                        <!-- Send answers from List to Session-->
+                        <button id="btn-lockin" onclick="lockIn(@current)" class="btn-lock-in">Lock in</button>
+                        <!-- Empty List -->
+                        <button onclick="cancel(@current)" class="btn-reset">Reset</button>
+                    </div>
+
+                    <input type="hidden" id="@questionA" value="@questionA" class="answer" />
+                    <input type="hidden" id="@questionB" value="@questionB" class="answer" />
+                    <input type="hidden" id="@questionC" value="@questionC" class="answer" />
+                    <input type="hidden" id="@questionD" value="@questionD" class="answer" />
+                    <input type="hidden" id="helloCurrent" value="@current" />
+                }
+                @{
+                    //Update the current question by 1 and send to session
+                    if (current >= 10)
+                    {
+                        Response.Redirect("~/Result/ThankYou");
+                    }
+                    else
+                    {
+                        current = current + 1;
+                        Session["QuestionNumber"] = current.ToString();
+                    }
+                }
+            </div>
+        }
+        else if (current >= 10)
+        {
+            Response.Redirect("~/Result/ThankYou");
+        }
+    }
+</div>
+<script>
+    var url = "Q1";
+    var currentNumber = sessionStorage.getItem('numble');
+    var intCurrent = parseInt(currentNumber);
+    intCurrent = intCurrent + 1;
+    sessionStorage.setItem('intCurrent', intCurrent);
+    window.onload = function () {
+        setTimeout(() => { countdownTimer(url, intCurrent); }, 3000);
+        var el = document.getElementById("button-group");
+        var le = document.getElementById("click-group");
+        setTimeout(() => {
+            el.style.display = 'grid';
+            le.style.display = 'flex';
+        }, 3000);
+        document.getElementById("btn-lockin").disabled = true;
+    };
+    var contestantAnswers = [];
+    var questionAnswers = [];
+    var correctOrder = [];
+
+    function addAnswer(id) {
+        //On button click, add answer to array/ list
+        //Add class to show selected status
+        var elem = document.getElementById(id);
+        var idValue = id;
+        var inArray = contestantAnswers.includes(idValue);
+        if (!inArray) {
+            contestantAnswers.push(idValue);
+            elem.classList.add("selected");
+            if (contestantAnswers.length == 4) {
+                document.getElementById("btn-lockin").disabled = false;
+            }
+        }
+    }
+
+    function cancel(current) {
+        //On Cancel click, empty array/list
+        contestantAnswers = [];
+        var buttons = document.querySelectorAll(".btn-option");
+        buttons.forEach(button => {
+            button.classList.remove('selected');
+        });
+        var number = current;
+        var questionNumber = "Q" + number + "Correct";
+    }
+
+    function lockIn(current) {
+        //On Lock In click, compare quesitonAnswers with correct order array
+        var grabCurrent = current;
+        var number = grabCurrent + 1;
+        var questionNumber = "Q" + number + "Correct";
+        var buttons = document.querySelectorAll(".btn-option");
+        buttons.forEach(button => {
+            questionAnswers.push(button.id);
+        });
+        var answers = document.querySelectorAll(".answer");
+        answers.forEach(answer => {
+            correctOrder.push(answer.id);
+        });
+        //Evaluate if correct or incorrect by looping through and comparing
+        var answer = true;
+        if (correctOrder[0] == contestantAnswers[0]) {
+            answer = true;
+            if (correctOrder[1] == contestantAnswers[1]) {
+                answer = true;
+                if (correctOrder[2] == contestantAnswers[2]) {
+                    answer = true;
+                    if (correctOrder[3] == contestantAnswers[3]) {
+                        answer = true;
+                    }
+                    else {
+                        answer = false;
+                    }
+                }
+                else {
+                    answer = false;
+                }
+            }
+            else {
+                answer = false;
+            }
+        }
+        else {
+            answer = false;
+        }
+        //Send value if correct/ incorrect to Session storage for Question
+        var nextUrl = "/Question/Q1";
+        if (answer === true) {
+            sessionStorage.setItem(questionNumber, "true");
+            //Check if this is the last question
+            if (current == 10 || current === "10") {
+                //Last question so navigate to thank you
+                window.location.href = "/Result/ThankYou";
+            }
+            else {
+                cheating = false;
+                window.location.href = nextUrl;
+            }
+        }
+        else if (answer === false) {
+            sessionStorage.setItem(questionNumber, "false");
+            window.location.href = nextUrl;
+        }
+        //Send time to answer question to Session storage
+        var time = document.getElementById('countdown').innerText;
+        var numTime = parseFloat(time);
+        var numAnswer = (30 - numTime).toFixed(2);
+        var timeToAnswer = numAnswer.toString();
+        var timeString = "answerTime-" + number;
+        sessionStorage.setItem(timeString, timeToAnswer);
+    }
+</script>

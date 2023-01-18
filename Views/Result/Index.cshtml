@@ -1,0 +1,346 @@
+﻿@model IEnumerable<FFFWebApplication.Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="table__page" style="margin: 4rem; max-height: 80%; overflow-y: scroll;">
+    <div class="btn-back">
+        <a href="/Home/AdminDB" class="btn-back">< Back to Dashboard</a>
+    </div>
+    <div class="table__page--title">
+        <h1>Results</h1>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                User Email
+            </th>
+            <th class="text-center">
+                Q1
+            </th>
+            <th class="text-center">
+                Q2
+            </th>
+            <th class="text-center">
+                Q3
+            </th>
+            <th class="text-center">
+                Q4
+            </th>
+            <th class="text-center">
+                Q5
+            </th>
+            <th class="text-center">
+                Q6
+            </th>
+            <th class="text-center">
+                Q7
+            </th>
+            <th class="text-center">
+                Q8
+            </th>
+            <th class="text-center">
+                Q9
+            </th>
+            <th class="text-center">
+                Q10
+            </th>
+            <th>Avg.</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var question1 = item.Q1Correct;
+            var question2 = item.Q2Correct;
+            var question3 = item.Q3Correct;
+            var question4 = item.Q4Correct;
+            var question5 = item.Q5Correct;
+            var question6 = item.Q6Correct;
+            var question7 = item.Q7Correct;
+            var question8 = item.Q8Correct;
+            var question9 = item.Q9Correct;
+            var question10 = item.Q10Correct;
+
+            var question1Time = item.Q1TimeToAnswer.ToString();
+            var question2Time = item.Q2TimeToAnswer.ToString();
+            var question3Time = item.Q3TimeToAnswer.ToString();
+            var question4Time = item.Q4TimeToAnswer.ToString();
+            var question5Time = item.Q5TimeToAnswer.ToString();
+            var question6Time = item.Q6TimeToAnswer.ToString();
+            var question7Time = item.Q7TimeToAnswer.ToString();
+            var question8Time = item.Q8TimeToAnswer.ToString();
+            var question9Time = item.Q9TimeToAnswer.ToString();
+            var question10Time = item.Q10TimeToAnswer.ToString();
+
+            <tr>
+                @{
+                    List<decimal> ls = new List<decimal>();
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FirstName)
+                        @Html.DisplayFor(modelItem => item.User.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Email)
+                    </td>
+
+
+                    if (question1 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q1TimeToAnswer)s
+                        </td>
+                        var q1 = item.Q1TimeToAnswer.ToString();
+                        var nq1 = Decimal.Parse(q1);
+                        ls.Add(nq1);
+                    }
+                    else if (question1 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q1TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q1TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question2 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q2TimeToAnswer)s
+                        </td>
+                        var q2 = item.Q2TimeToAnswer.ToString();
+                        var nq2 = Decimal.Parse(q2);
+                        ls.Add(nq2);
+                    }
+                    else if (question2 == "false")
+                    {
+                        <td class="table-red">
+                            <span>@Html.DisplayFor(modelItem => item.Q2TimeToAnswer)s</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q2TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question3 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q3TimeToAnswer)s
+                        </td>
+                        var q3 = item.Q3TimeToAnswer.ToString();
+                        var nq3 = Decimal.Parse(q3);
+                        ls.Add(nq3);
+                    }
+                    else if (question3 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q3TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q3TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question4 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q4TimeToAnswer)s
+                        </td>
+                        var q4 = item.Q4TimeToAnswer.ToString();
+                        var nq4 = Decimal.Parse(q4);
+                        ls.Add(nq4);
+                    }
+                    else if (question4 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q4TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q4TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question5 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q5TimeToAnswer)s
+                        </td>
+                        var q5 = item.Q5TimeToAnswer.ToString();
+                        var nq5 = Decimal.Parse(q5);
+                        ls.Add(nq5);
+                    }
+                    else if (question5 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q5TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q5TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question6 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q6TimeToAnswer)s
+                        </td>
+                        var q6 = item.Q6TimeToAnswer.ToString();
+                        var nq6 = Decimal.Parse(q6);
+                        ls.Add(nq6);
+                    }
+                    else if (question6 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q6TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q6TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question7 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q7TimeToAnswer)s
+                        </td>
+                        var q7 = item.Q7TimeToAnswer.ToString();
+                        var nq7 = Decimal.Parse(q7);
+                        ls.Add(nq7);
+                    }
+                    else if (question7 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q7TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q7TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question8 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q8TimeToAnswer)s
+                        </td>
+                        var q8 = item.Q8TimeToAnswer.ToString();
+                        var nq8 = Decimal.Parse(q8);
+                        ls.Add(nq8);
+                    }
+                    else if (question8 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q8TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q8TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question9 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q9TimeToAnswer)s
+                        </td>
+                        var q9 = item.Q9TimeToAnswer.ToString();
+                        var nq9 = Decimal.Parse(q9);
+                        ls.Add(nq9);
+                    }
+                    else if (question9 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q9TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q9TimeToAnswer)s
+                        </td>
+                    }
+
+                    if (question10 == "true")
+                    {
+                        <td class="table-green">
+                            @Html.DisplayFor(modelItem => item.Q10TimeToAnswer)s
+                        </td>
+                        var q10 = item.Q10TimeToAnswer.ToString();
+                        var nq10 = Decimal.Parse(q10);
+                        ls.Add(nq10);
+                    }
+                    else if (question10 == "false")
+                    {
+                        <td class="table-red">
+                            @Html.DisplayFor(modelItem => item.Q10TimeToAnswer)s
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Q10TimeToAnswer)s
+                        </td>
+                    }
+
+
+                    <td id="averageSum">
+                        <!--Calculate average time of correct answers only and print-->
+                        @if (ls.Count() == 0)
+                        {
+                            ls.Add(0);
+                        }
+                        @Math.Round(ls.Average(), 2)s
+                    </td>
+
+                    <td class="table-actions">
+                        <a href="@Url.Action("Details", "Result", new { id = item.ResultId })" class="btn btn-primary">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Result", new { id = item.ResultId })" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    var timeQuery = document.getElementsByClassName("result-time");
+    const correctQuery = document.getElementsByClassName("result-correct");
+</script>

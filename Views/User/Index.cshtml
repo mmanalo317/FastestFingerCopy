@@ -1,0 +1,84 @@
+﻿@model IEnumerable<FFFWebApplication.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="table__page" id="table__page" style="max-height: 40rem; overflow-y: scroll;">
+    <div class="btn-back">
+        <a href="/Home/AdminDB" class="btn-back">< Back to Dashboard</a>
+    </div>
+    <div class="table__page--title">
+        <h1>Users</h1>
+        <a href="@Url.Action("Create", "User")" class="btn btn-success">
+            <i class="fa-solid fa-plus"></i>
+            <span>
+                <strong>Add a User</strong>
+            </span>
+        </a>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                Access Level
+            </th>
+            <th style="display:none;">
+                Taken Quiz
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccessLevel)
+                </td>
+                <td style="display: none;">
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+
+                <td class="table-actions">
+                    <a href="@Url.Action("Edit", "User", new { id = item.UserId })" class="btn btn-warning">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
+                    <a href="@Url.Action("Details", "User", new { id = item.UserId })" class="btn btn-primary">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
+                    <a href="@Url.Action("Delete", "User", new { id = item.UserId })" class="btn btn-danger">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

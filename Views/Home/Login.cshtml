@@ -1,0 +1,52 @@
+﻿@model FFFWebApplication.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+<div class="login__container">
+    @using (Html.BeginForm())
+    {
+
+    <div class="login-wrapper">
+        @Html.ValidationSummary(true)
+        <div class="login-logo">
+            <img src="~/Content/Images/mill_logo.png" />
+        </div>
+        <div class="login-table">
+            <table>
+                <tr class="validate-input">
+                    <td class="login-email">
+                        <span>
+                            <i class="fa-solid fa-user"></i>
+                            @Html.LabelFor(model => model.Email)
+                        </span>
+
+                        @Html.EditorFor(model => model.Email)
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </td>
+                </tr>
+                <tr class="validate-input">
+                    <td class="login-password">
+                        <span>
+                            <i class="fa-solid fa-key"></i>
+                            @Html.LabelFor(model => model.Password)
+                        </span>
+                        @Html.EditorFor(model => model.Password)
+                        <div style="height: 20px;">
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="login-btn-container">
+                        <input class="btn-magic" type="submit" value="Login" />
+                    </td>
+                   </tr>
+            </table>
+        </div>
+
+    </div>
+    }
+</div>

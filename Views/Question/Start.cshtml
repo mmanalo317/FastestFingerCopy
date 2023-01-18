@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FFFWebApplication.Question>
+
+@{
+    ViewBag.Title = "Start";
+}
+
+<div class="page__container start__container">
+    <div class="start-logo">
+        <img src="~/Content/Images/fff_logo.png" />
+    </div>
+    <p class="start-text">
+        There will be 10 questions to answer. You have 20 seconds to put
+        the answers in the correct order and LOCK IN your answer. This will save
+        your answers and bring you to a PAUSE screen to start the next question in
+        your own time. If you wish to reset your question order click the RESET button. Once
+        the Quiz is started it cannot be exited.
+        Good luck!
+    </p>
+    <div class="start__container--graphic">
+        @{
+            List<int> listOfIds = new List<int>();
+
+            //Add each Question in table to listOfIds
+            foreach (var item in Model)
+            {
+                listOfIds.Add(item.QuestionId);
+            }
+
+            //Random section and display
+            int randIndex, random;
+            List<int> listOfSets = new List<int> { 1, 2, 3 };
+
+            Random rnd = new Random();
+            randIndex = rnd.Next(listOfSets.Count);
+            random = listOfSets[randIndex];
+
+            List<int> listOfQuestions = new List<int> { };
+
+            foreach (var item in Model.Where(x => x.QuestionSet == random))
+            {
+                //Add each item to a list
+                listOfQuestions.Add(item.QuestionId);
+            }
+
+            //Push to Session Storage
+            Session["SetId"] = random;
+            <input type="hidden" id="randomElem" value="@random" />
+
+            //Start the variable for question counter
+            Session["QuestionNumber"] = 0;
+
+        }
+        <a class="line-title btn-magic" href="~/Question/Q1">START QUIZ</a>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
